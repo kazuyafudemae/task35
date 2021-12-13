@@ -62,9 +62,15 @@ class CartController extends Controller
 		if (Cart::find($request->cart_id) !== null) {
 			$cart_id = $request->input('cart_id');
 			if ($this->cart->delete_cart($cart_id)) {
-				return redirect(route('cart.index'));
+				$carts = Cart::where('user_id', Auth::id())->get();
+				$subtotals = $this->subtotals($carts);
+				$totals = $this->totals($carts);
+				return view('Cart.index', compact('carts', 'totals', 'subtotals'))->with('true_message', 'カート内の商品を削除しました');
 			} else {
-				return redirect(route('cart.index'));
+				$carts = Cart::where('user_id', Auth::id())->get();
+				$subtotals = $this->subtotals($carts);
+				$totals = $this->totals($carts);
+				return view('Cart.index', compact('carts', 'totals', 'subtotals'))->with('false_message', 'カート内の商品を削除できませんでした');
 			}
 		} else {
 			return redirect(route('home'));
