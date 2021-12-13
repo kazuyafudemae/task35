@@ -13,6 +13,10 @@ class CreateItemsTable extends Migration
 	 */
 	public function up()
 	{
+		if (Schema::hasTable('items')) {
+			// テーブルが存在していればリターン
+			return;
+		}
 		Schema::create('items', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('name');

@@ -16,10 +16,8 @@ class Item extends Model
 		'explanation',
 		'price',
 		'stock',
-		'created_at',
-		'updated_at',
-		'deleted_at'
 	];
 
 	protected $table = 'items';
+
 }

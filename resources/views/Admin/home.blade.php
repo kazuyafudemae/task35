@@ -13,8 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
+					<a href='{{ route('admin.item.index') }}'>(管理者側)商品一覧へ</a>
                 </div>
             </div>
         </div>

@@ -13,6 +13,10 @@ class CreateAdminsTable extends Migration
      */
     public function up()
     {
+		if (Schema::hasTable('admins')) {
+			// テーブルが存在していればリターン
+			return;
+		}
         Schema::create('admins', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
